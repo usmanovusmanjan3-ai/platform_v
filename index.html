@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELORA — History Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="bg-line line1"></div>
+<div class="bg-line line2"></div>
+<div class="bg-line line3"></div>
+<div class="bg-line line4"></div>
+
+<div class="app">
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo">
+            <span>VELORA</span>
+            <small>HISTORY QUIZ</small>
+        </div>
+
+        <div class="header-right">
+            <div class="best-score">
+                🏆 Eng yaxshi: <span id="bestScore">0</span>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- START SCREEN -->
+    <section class="screen start-screen" id="startScreen">
+
+        <div class="hero-icon">🏛️</div>
+
+        <h1>Tarix bilimlaringizni<br>
+            <span>sinab ko‘ring!</span>
+        </h1>
+
+        <p class="subtitle">
+            Tarix bo‘yicha interaktiv viktorinaga xush kelibsiz.
+            Savollarga tez va to‘g‘ri javob bering!
+        </p>
+
+        <div class="name-box">
+            <label>O‘quvchi ismi</label>
+            <input
+                type="text"
+                id="playerName"
+                placeholder="Ismingizni kiriting..."
+                maxlength="30"
+            >
+        </div>
+
+        <div class="category-title">Mavzuni tanlang</div>
+
+        <div class="categories">
+
+            <button class="category active" data-category="uzbekistan">
+                <span>🇺🇿</span>
+                <div>
+                    <b>O‘zbekiston tarixi</b>
+                    <small>Davlatlar va tarixiy shaxslar</small>
+                </div>
+            </button>
+
+            <button class="category" data-category="temur">
+                <span>⚔️</span>
+                <div>
+                    <b>Amir Temur</b>
+                    <small>Temuriylar davri</small>
+                </div>
+            </button>
+
+            <button class="category" data-category="world">
+                <span>🌍</span>
+                <div>
+                    <b>Jahon tarixi</b>
+                    <small>Dunyo tarixidagi voqealar</small>
+                </div>
+            </button>
+
+            <button class="category" data-category="ancient">
+                <span>🏺</span>
+                <div>
+                    <b>Qadimgi dunyo</b>
+                    <small>Qadimgi sivilizatsiyalar</small>
+                </div>
+            </button>
+
+            <button class="category" data-category="mixed">
+                <span>🔥</span>
+                <div>
+                    <b>Aralash tarix</b>
+                    <small>Barcha mavzulardan</small>
+                </div>
+            </button>
+
+        </div>
+
+        <div class="rules">
+
+            <div>
+                <span>❤️</span>
+                <b>3</b>
+                <small>Hayot</small>
+            </div>
+
+            <div>
+                <span>⏱️</span>
+                <b>15s</b>
+                <small>Har savol</small>
+            </div>
+
+            <div>
+                <span>⭐</span>
+                <b>+100</b>
+                <small>Ball</small>
+            </div>
+
+            <div>
+                <span>🔥</span>
+                <b>Combo</b>
+                <small>Bonus</small>
+            </div>
+
+        </div>
+
+        <button class="start-btn" id="startBtn">
+            BOSHLASH
+            <span>→</span>
+        </button>
+
+    </section>
+
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen quiz-screen hidden" id="quizScreen">
+
+        <div class="quiz-top">
+
+            <div class="player-info">
+                <div class="avatar">👨‍🎓</div>
+                <div>
+                    <b id="quizPlayerName">O‘quvchi</b>
+                    <small id="categoryName">O‘zbekiston tarixi</small>
+                </div>
+            </div>
+
+            <div class="lives" id="lives">
+                ❤️ ❤️ ❤️
+            </div>
+
+            <div class="score-box">
+                <small>BALL</small>
+                <strong id="score">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="progress-area">
+
+            <div class="question-count">
+                <span id="currentQuestion">1</span>
+                /
+                <span id="totalQuestions">15</span>
+            </div>
+
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="timer" id="timer">
+                15
+            </div>
+
+        </div>
+
+
+        <div class="combo-area">
+
+            <div class="combo" id="combo">
+                🔥 COMBO x0
+            </div>
+
+            <div class="streak-text" id="streakText">
+                Ketma-ket to‘g‘ri javoblar
+            </div>
+
+        </div>
+
+
+        <div class="question-card">
+
+            <div class="question-number">
+                SAVOL <span id="questionNumber">01</span>
+            </div>
+
+            <h2 id="questionText">
+                Savol yuklanmoqda...
+            </h2>
+
+            <div class="answers" id="answers"></div>
+
+            <div class="question-bottom">
+
+                <button class="hint-btn" id="hintBtn">
+                    💡 Yordam
+                </button>
+
+                <button class="skip-btn" id="skipBtn">
+                    O‘tkazib yuborish →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESULT SCREEN -->
+    <section class="screen result-screen hidden" id="resultScreen">
+
+        <div class="result-icon" id="resultIcon">
+            🏆
+        </div>
+
+        <p class="result-label">QUIZ YAKUNLANDI</p>
+
+        <h1>
+            <span id="resultName">O‘quvchi</span>
+        </h1>
+
+        <div class="final-score">
+            <small>SIZNING NATIJANGIZ</small>
+            <strong id="finalScore">0</strong>
+            <span>ball</span>
+        </div>
+
+        <div class="result-grid">
+
+            <div class="result-item">
+                <span>✅</span>
+                <b id="correctAnswers">0</b>
+                <small>To‘g‘ri</small>
+            </div>
+
+            <div class="result-item">
+                <span>❌</span>
+                <b id="wrongAnswers">0</b>
+                <small>Noto‘g‘ri</small>
+            </div>
+
+            <div class="result-item">
+                <span>⏭️</span>
+                <b id="skippedAnswers">0</b>
+                <small>O‘tkazildi</small>
+            </div>
+
+            <div class="result-item">
+                <span>🔥</span>
+                <b id="bestCombo">0</b>
+                <small>Eng yaxshi combo</small>
+            </div>
+
+        </div>
+
+        <div class="result-message" id="resultMessage">
+            Ajoyib natija!
+        </div>
+
+        <div class="result-buttons">
+
+            <button class="restart-btn" id="restartBtn">
+                🔄 Qayta o‘ynash
+            </button>
+
+            <button class="home-btn" id="homeBtn">
+                🏠 Bosh sahifa
+            </button>
+
+        </div>
+
+        <div class="leaderboard">
+
+            <h3>🏆 So‘nggi natijalar</h3>
+
+            <div id="leaderboardList"></div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
